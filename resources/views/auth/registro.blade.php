@@ -20,7 +20,7 @@
       </div>
       <div class="col-md-6 mb-4">
         <div class="form-outline">
-          <input class="form-control" name="lastname" type="text" id="lastname" placeholder="Apellidos" required=""/>
+          <input class="form-control" name="last-name" type="text" id="last-name" placeholder="Apellidos" required=""/>
         </div>
       </div>
     </div>
@@ -105,6 +105,9 @@
         if ($(this).val() != $('#password').val()) {
           $('#form-submit').prop('disabled', true);
         }
+        else if($(this).val() == ""){
+          $('#form-submit').prop('disabled', true);
+        }
         else {
           $('#form-submit').prop('disabled', false);
         }
@@ -112,6 +115,9 @@
 
       $('#password').on('input change', function () {
         if ($(this).val() != $('#password_confirmed').val()) {
+          $('#form-submit').prop('disabled', true);
+        }
+        else if($(this).val() == ""){
           $('#form-submit').prop('disabled', true);
         }
         else {
@@ -166,6 +172,7 @@
 
     //Validar correo y Registro
     function registrarse(){
+      document.getElementById("form-submit").disabled = true;
       //ajax por metodo post
       $.ajax({
         url: "{{ route('registro.guardar') }}",
@@ -173,30 +180,35 @@
         data: {
           _token: "{{ csrf_token() }}",
           name: $('#name').val(),
-          lastname: $('#lastname').val(),
+          'last-name': $('#last-name').val(),
           email: $('#email').val(),
           password: $('#password').val(),
         },
         success: function(data){
+          console.log(data);
           var data = JSON.parse(data);
           if(data == "existe"){
             Swal.fire({
               icon: 'error',
+              type: 'error',
               title: 'Oops...',
-              text: 'El correo ya esta registrado!',
+              text: 'El correo ya existe',
+            }).then((result) => {
+              if (result.value) {
+                document.getElementById("form-submit").disabled = false;
+              }
             })
           }
-          else{
+          else if(data == "registrado"){
+            //enviar a ruta Login
+            window.location.href = "{{ route('login') }}";
             Swal.fire({
+              position: 'top-end',
               icon: 'success',
-              title: 'Exito!',
-              text: 'Registro exitoso!',
+              title: 'Usuario registrado correctamente',
+              showConfirmButton: false,
+              timer: 1500
             })
-            .then((result) => {
-              if (result.value) {
-                window.location.href = "{{ route('login') }}";
-              }
-            });
           }
         }
       });

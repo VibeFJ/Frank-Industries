@@ -73,7 +73,7 @@ https://templatemo.com/tm-551-stand-blog
                 </div>
                 <div class="col-lg-12">
                     <div class="copyright-text">
-                        <p>Desarrollada sin fines lucrativos solo por fines estudiantiles.| React-Laravel: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
+                        <p>Desarrollada sin fines lucrativos solamente con fines de Aprendizaje.| Frank Industries: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
                     </div>
                 </div>
             </div>

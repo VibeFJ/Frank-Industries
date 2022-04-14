@@ -107,6 +107,7 @@
 
     //Envio de correo con ajax
     function correoenviado(){
+      document.getElementById("form-submit").disabled = true;
       //ajax por metodo post
       $.ajax({
         url: "{{ route('mail') }}",
@@ -117,12 +118,17 @@
         },
         success: function(data){
           var data = JSON.parse(data);
+          console.log(data);
           if(data == "enviado"){
             Swal.fire({
               title: 'Mensaje Enviado',
               text: 'Gracias por contactarnos, pronto nos comunicaremos con usted.',
               icon: 'success',
               confirmButtonText: 'Aceptar'
+            }).then((result) => {
+              if (result.value) {
+                $('#message').val("");
+              }
             })
           }
         }

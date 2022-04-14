@@ -25,7 +25,7 @@ class UsuariosController extends Controller
         if($user){
             return json_encode('existe');
         }
-        $user = User::create(request(['name', 'lastname', 'email', 'password']));
+        $user = User::create(request(['name', 'last-name', 'email', 'password']));
         auth()->login($user);
         return json_encode('registrado');
     }

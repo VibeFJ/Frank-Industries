@@ -18,6 +18,7 @@
 - Link: [Iconos](https://icons.getbootstrap.com).
 - php artisan migrate --seed
 - php artisan make:mail TestMail
+- Link: [SweetAlert2](https://sweetalert2.github.io).
 
 ## About Laravel
 
