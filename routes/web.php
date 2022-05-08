@@ -50,6 +50,10 @@ Route::get('/contacto', [GeneralController::class, 'contacto'])->middleware('aut
 
 Route::get('/acerca', [GeneralController::class, 'acerca'])->middleware('auth')->name('acerca');
 
+Route::get('/marvel', [GeneralController::class, 'marvel'])->middleware('auth')->name('marvel');
+
+Route::get('/menu', [GeneralController::class, 'menu'])->middleware('auth')->name('menu');
+
 /*
 |--------------------------------------------------------------------------
 | Rutas del correo

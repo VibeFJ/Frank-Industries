@@ -42,22 +42,20 @@ https://templatemo.com/tm-551-stand-blog
         </div>
     </div>
     <!-- ***** Preloader End ***** -->
-
-    <!-- Header -->
     <header class="" style="height:80px">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('raiz') }}" ><h2>Frank-Industries</h2></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        @yield('Barra')
-                    </ul>
-                </div>
-            </div>
-        </nav>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="{{ route('raiz') }}" ><h2>Frank-Industries</h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              @yield('Barra')
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
 
     @yield('Contenido')
@@ -90,6 +88,7 @@ https://templatemo.com/tm-551-stand-blog
     <script src="assets/js/slick.js"></script>
     <script src="assets/js/isotope.js"></script>
     <script src="assets/js/accordions.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script language = "text/Javascript">
     cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field

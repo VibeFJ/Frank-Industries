@@ -41,4 +41,22 @@ class GeneralController extends Controller
     public function acerca(){
         return view('about');
     }
+
+    /**
+     * Ruta marvel.
+     *
+     * @return view marvel
+     */
+    public function marvel(){
+        return view('Marvel/marvel');
+    }
+
+    /**
+     * Ruta menu.
+     *
+     * @return view menu
+     */
+    public function menu(){
+        return view('menu');
+    }
 }

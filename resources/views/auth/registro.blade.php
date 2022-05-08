@@ -81,8 +81,6 @@
 
 @endsection
 @section('Js2')
-
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 
     //Mostrar-Ocultar contraseña

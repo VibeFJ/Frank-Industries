@@ -9,9 +9,7 @@
 <h2>¡Bienvenido!</h2>
 @endsection
 @section('Form')
-  <h2 class="fw-bold mb-5">Iniciar sesión</h2>
-  <form action="{{ route('login.ingresar') }}" method="post">
-    @csrf
+    <h2 class="fw-bold mb-5">Iniciar sesión</h2>
 
     <!-- Email input -->
     <div class="form-outline mb-4">
@@ -31,13 +29,8 @@
       </label>
     </div>
 
-    <!-- Mensaje de error -->
-    @error('message')
-      <div class="alert alert-danger mb-4">{{ $message }}</div>
-    @enderror
-
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4" id="form-submit">
+    <button onclick="envio()" type="submit" class="btn btn-primary btn-block mb-4" id="form-submit" disabled>
       Iniciar Sesión
     </button>
 
@@ -62,23 +55,97 @@
         </svg>
       </button>
     </div>
-  </form>
+
 @endsection
 @section('Js2')
-
-<script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <script>
-  $(document).ready(function () {
-    $('#mostrar').click(function () {
-      if ($('#mostrar').is(':checked')) {
-        $('#password').attr('type', 'text');
-        $('#c_password').attr('type', 'text');
-      }
-      else {
-        $('#password').attr('type', 'password');
-        $('#c_password').attr('type', 'password');
-      }
+
+    //Desabilitar boton
+    function envio() {
+      $('#form-submit').prop('disabled', true);
+      $.ajax({
+        url: "{{ route('login.ingresar') }}",
+        type: "POST",
+        data: {
+          _token: "{{ csrf_token() }}",
+          email: $('#email').val(),
+          password: $('#password').val(),
+        },
+        success: function(data){
+          console.log(data);
+          var data = JSON.parse(data);
+          if(data == "false"){
+            Swal.fire({
+              icon: 'error',
+              type: 'error',
+              title: 'Oops...',
+              text: 'Correo y/o contraseña Incorrectos, intente de nuevo',
+            }).then((result) => {
+              if (result.value) {
+                document.getElementById("form-submit").disabled = false;
+              }
+            })
+          }
+          else if(data == "true"){
+            //enviar a Index
+            window.location.href = "{{ route('index') }}";
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Bienvenido a Frank Industries',
+              showConfirmButton: false,
+              timer: 3000
+            })
+          }
+          else{
+            Swal.fire({
+              icon: 'error',
+              type: 'error',
+              title: 'Oops...',
+              text: 'Error al iniciar sesión, intente de nuevo',
+            }).then((result) => {
+              if (result.value) {
+                document.getElementById("form-submit").disabled = false;
+              }
+            })
+          }
+        }
+      });
+    }
+
+    //Mostrar contraseña
+    $(document).ready(function () {
+      $('#mostrar').click(function () {
+        if ($('#mostrar').is(':checked')) {
+          $('#password').attr('type', 'text');
+          $('#c_password').attr('type', 'text');
+        }
+        else {
+          $('#password').attr('type', 'password');
+          $('#c_password').attr('type', 'password');
+        }
+      });
     });
-  });
+
+    //Mostrar boton si los campos se llenan
+    $(document).ready(function () {
+      $('#email').on('input change', function () {
+        if(($(this).val() != "") & ($('#password').val() != "")) {
+          $('#form-submit').prop('disabled', false);
+        }
+        else {
+          $('#form-submit').prop('disabled',true);
+        }
+      });
+      $('#password').on('input change', function () {
+        if (($(this).val() != "") & ($('#email').val() != "")) {
+          $('#form-submit').prop('disabled', false);
+        }
+        else {
+          $('#form-submit').prop('disabled', true);
+        }
+      });
+    });
+
   </script>
 @endsection

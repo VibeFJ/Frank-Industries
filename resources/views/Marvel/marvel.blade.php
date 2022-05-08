@@ -1,16 +1,19 @@
 @extends('template.fondo')
 @section('Barra')
-<li class="nav-item active">
-    <a class="nav-link" href="{{ route('index') }}">Inicio
-      <span class="sr-only">(current)</span>
-    </a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{{ route('acerca') }}">Acerca de Mi</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{{ route('login.destroy') }}">Cerrar Sesi&oacute;n</a>
-</li>
+    <li class="nav-item active">
+      <a class="nav-link" href="{{ route('index') }}">Inicio
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('acerca') }}">Personajes</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('contacto') }}">Comics</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('login.destroy') }}">Cerrar Sesi&oacute;n</a>
+    </li>
 @endsection
 @section('Contenido')
 
@@ -235,7 +238,7 @@
                 <div class="col-lg-12">
                   <div class="sidebar-item tags">
                     <div class="sidebar-heading">
-                      <h2>Lenguajes de Programaci&oacute;n</h2>
+                      <h2>Lenguajes & Frameworks</h2>
                     </div>
                     <div class="content">
                       <ul>
@@ -253,6 +256,7 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
     </section>
 

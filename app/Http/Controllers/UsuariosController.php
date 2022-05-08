@@ -44,11 +44,9 @@ class UsuariosController extends Controller
      */
     public function ingresar(){
         if(!auth()->attempt(request(['email', 'password']))){
-            return back()->withErrors([
-                'message' => 'Correo y/o Contraseña Incorrectos'
-            ]);
+          return json_encode('false');
         }
-        return redirect()->to('index');
+        return json_encode('true');
     }
 
     /**
